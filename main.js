@@ -92,12 +92,6 @@ function checkForWinner() {
     return;
   }
 
-  if (turnsTaken === 9) {
-    canUpdatePlayer = false;
-    helperText.innerHTML = "sorry! no one won. Restart game";
-    return;
-  }
-
   winningIndices.find((set) => {
     if (
       boardGame[set[0]] &&
@@ -107,6 +101,12 @@ function checkForWinner() {
       hasWinner = true;
     }
   });
+
+  if (turnsTaken === 9) {
+    canUpdatePlayer = false;
+    helperText.innerHTML = "sorry! no one won. Restart game";
+    return;
+  }
 }
 
 /** Event Listerner Helper Functions */
@@ -118,7 +118,6 @@ function createElements() {
 }
 
 function attachEventListeners() {
-  console.log(boardElements);
   boardElements.forEach((el) => {
     el.addEventListener("click", (e) => {
       let placement = parseInt(e.target.id.replace("button-", ""));
